@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+
+    parameters {
+        choice(name: 'browserName', choices: ['Edge', 'Chrome', 'Firefox'], description: 'Specify the browser name')
+        booleanParam(name: 'runHomePageTests', defaultValue: false, description: 'Run tests from test_HomePage.py')
+        booleanParam(name: 'runLoginTests', defaultValue: false, description: 'Run tests from test_Login.py')
+    }
+
+    stages {
+        stage('Run Tests') {
+            steps {
+                script {
+                    def testCommand = "python -m pytest --browser_name \"$browserName\" G:\\Python_Selenium\\Shoplover\\tests --html=report.html"
+
+                    if (params.runHomePageTests) {
+                        testCommand += " -k test_HomePage.py"
+                    }
+
+                    if (params.runLoginTests) {
+                        testCommand += " -k test_Login.py"
+                    }
+
+                    // Check if at least one test is selected to run
+                    if (params.runHomePageTests || params.runLoginTests) {
+                        bat testCommand
+                    } else {
+                        echo "No tests selected. Please check at least one test to execute."
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            // Archive the HTML report for later use or review
+            archiveArtifacts 'report.html'
+        }
+    }
+}
