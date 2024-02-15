@@ -44,4 +44,6 @@ The Jenkins CI/CD pipeline is seamlessly integrated into the project workflow. A
 The Jenkins pipeline project successfully streamlines the Selenium automation testing process using the Pytest framework. Its user-friendly interface, combined with robust logging, reporting, and cross-browser compatibility, enhances the overall testing experience. The project is positioned to provide reliable and continuous feedback on application quality, fostering a more efficient and error-resistant development lifecycle.
 ### Input site
 ![](Jenkins.png)
-![](2024-02-16_00h02_12.mp4)
+
+https://github.com/Akash-Ahmed-CSE/Jankins/assets/57281241/b1bbb1c5-d8cb-46ae-af05-69e530f209be
+
